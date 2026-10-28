@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffe3ef">
+    <title>Meri Baby ❤️</title>
+    <meta name="description" content="A little romantic website made with love for my Baby.">
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe0ec, #f5e5ff);
+            color: #713d60;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        main {
+            width: 90%;
+            max-width: 450px;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(200, 124, 165, 0.2);
+        }
+
+        h1 {
+            color: #e75480;
+        }
+
+        button {
+            padding: 14px 20px;
+            margin: 10px 0;
+            width: 100%;
+            border: none;
+            border-radius: 15px;
+            background: #ff8bb5;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="app">
+        <div aria-hidden="true" style="font-size: 60px;">💗</div>
+
+        <h1>कैसी हो, Baby? 🥹❤️</h1>
+
+        <p>आपके लिए कुछ खास बनाया है, मेरी जान। 💕</p>
+
+        <button type="button" onclick="showPage('good')">
+            अच्छी हूँ 😊
+        </button>
+
+        <button type="button" onclick="showPage('yours')">
+            जैसी भी हूँ, आपकी हूँ 🫶
+        </button>
+
+        <footer>Made with all my love, for my Baby ❤️</footer>
+    </main>
+
+    <script>
+        function showPage(answer) {
+            const app = document.getElementById("app");
+
+            if (answer === "good") {
+                app.innerHTML = `
+                    <h1>चलो शुरू करते हैं ❤️</h1>
+                    <p>आपकी smile हमेशा बनी रहे, मेरी जान। 💗</p>
+                    <button onclick="showPage('menu')">हाँ जी ❤️</button>
+                `;
+            } else if (answer === "yours") {
+                app.innerHTML = `
+                    <h1>I love you so much, Baby! ❤️</h1>
+                    <p>Thank you so much, मेरी जान 🥹💕</p>
+                    <p>चलो शुरू करते हैं ❤️</p>
+                    <button onclick="showPage('menu')">हाँ जी ❤️</button>
+                `;
+            } else if (answer === "menu") {
+                app.innerHTML = `
+                    <h1>मेरी Baby को क्या चाहिए? 🥹❤️</h1>
+                    <p>बताओ ना, मेरी जान! 💕</p>
+                    <button>तुषार चाहिए ❤️</button>
+                    <button>खाना चाहिए 🍕</button>
+                    <button>जी जी जी 🥰</button>
+                    <button>आपको खाना चाहिए? 🍽️</button>
+                    <button>खा लो, Baby ❤️</button>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
