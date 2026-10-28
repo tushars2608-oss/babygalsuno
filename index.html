@@ -2,105 +2,376 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ffe3ef">
-    <title>Meri Baby ❤️</title>
-    <meta name="description" content="A little romantic website made with love for my Baby.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffe3ef">
+  <meta name="description" content="A romantic website made with love for my Baby.">
+  <title>Meri Baby ❤️</title>
 
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ffe0ec, #f5e5ff);
-            color: #713d60;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+  <style>
+    :root {
+      --pink: #ff82ad;
+      --pink-dark: #e75480;
+      --lavender: #d8a4ff;
+      --ink: #713d60;
+      --muted: #a87596;
+    }
 
-        main {
-            width: 90%;
-            max-width: 450px;
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(200, 124, 165, 0.2);
-        }
+    * { box-sizing: border-box; }
 
-        h1 {
-            color: #e75480;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 20px 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 15%, #fff7fb, transparent 27%),
+        radial-gradient(circle at 90% 80%, #f4dcff, transparent 30%),
+        linear-gradient(135deg, #ffe0ec, #f5e5ff 55%, #fff0f5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow-x: hidden;
+    }
 
-        button {
-            padding: 14px 20px;
-            margin: 10px 0;
-            width: 100%;
-            border: none;
-            border-radius: 15px;
-            background: #ff8bb5;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    #app {
+      width: min(92%, 480px);
+      padding: clamp(24px, 6vw, 36px) clamp(18px, 5vw, 28px);
+      margin: auto;
+      position: relative;
+      z-index: 2;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 30px;
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 18px 60px rgba(184,100,150,.18);
+      backdrop-filter: blur(12px);
+      animation: appear .4s ease both;
+    }
 
-        footer {
-            margin-top: 25px;
-            font-size: 12px;
-        }
-    </style>
+    .hero-heart {
+      font-size: clamp(54px, 14vw, 72px);
+      line-height: 1.2;
+      filter: drop-shadow(0 8px 14px rgba(231,84,128,.18));
+      animation: heartbeat 1.4s ease-in-out infinite;
+    }
+
+    h1 {
+      margin: 16px 0 12px;
+      color: var(--pink-dark);
+      font-size: clamp(27px, 7vw, 36px);
+      line-height: 1.25;
+    }
+
+    h2 { font-size: 24px; line-height: 1.35; }
+    p { font-size: 17px; line-height: 1.75; margin: 12px 0; }
+    .subtitle { color: #96617f; }
+    .button-stack { margin-top: 22px; }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 15px 14px;
+      margin: 12px 0;
+      border: 0;
+      border-radius: 17px;
+      background: linear-gradient(105deg, var(--pink), var(--lavender));
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 7px 18px rgba(213,140,182,.22);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(213,140,182,.3);
+    }
+
+    button:active { transform: scale(.99); }
+
+    button:focus-visible, textarea:focus-visible {
+      outline: 3px solid #9d58c6;
+      outline-offset: 3px;
+    }
+
+    button.secondary {
+      background: #fff0f7;
+      color: #a34e80;
+      border: 1px solid #f4c5dc;
+      box-shadow: none;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 112px;
+      padding: 14px;
+      border: 2px solid #f2c8df;
+      border-radius: 16px;
+      font: inherit;
+      resize: vertical;
+      background: #fffafd;
+      color: var(--ink);
+    }
+
+    .note { color: var(--muted); font-size: 12px; }
+    #message { margin-top: 14px; overflow-wrap: anywhere; }
+    footer { margin-top: 25px; font-size: 12px; color: var(--muted); }
+
+    .float-heart {
+      position: fixed;
+      bottom: -45px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: .58;
+      animation: float-up 8s linear forwards;
+    }
+
+    @keyframes heartbeat {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float-up {
+      to { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <main id="app">
-        <div aria-hidden="true" style="font-size: 60px;">💗</div>
+  <main id="app" aria-live="polite"></main>
 
+  <script>
+    // Countdown ki date yahan change kar sakte ho.
+    const DELIVERY_DATE = "2026-11-29T00:00:00";
+    const app = document.getElementById("app");
+
+    function render(content) {
+      app.innerHTML = content +
+        '<footer>Made with all my love, for my Baby ❤️</footer>';
+
+      app.style.animation = "none";
+      void app.offsetWidth;
+      app.style.animation = "appear .4s ease";
+    }
+
+    function button(label, action, secondary = false) {
+      return `<button type="button"
+        class="${secondary ? "secondary" : ""}"
+        onclick="${action}">${label}</button>`;
+    }
+
+    function backButton() {
+      return button("← वापस चलें, Baby", "home()", true);
+    }
+
+    function welcome() {
+      render(`
+        <div class="hero-heart">💗</div>
         <h1>कैसी हो, Baby? 🥹❤️</h1>
+        <p class="subtitle">
+          आपके लिए कुछ खास बनाया है, मेरी जान। 💕
+        </p>
+        <div class="button-stack">
+          ${button("अच्छी हूँ 😊", "feeling('good')")}
+          ${button("जैसी भी हूँ, आपकी हूँ 🫶", "feeling('yours')")}
+        </div>
+      `);
+    }
 
-        <p>आपके लिए कुछ खास बनाया है, मेरी जान। 💕</p>
+    function feeling(answer) {
+      const yours = answer === "yours";
 
-        <button type="button" onclick="showPage('good')">
-            अच्छी हूँ 😊
-        </button>
+      render(`
+        <div class="hero-heart">${yours ? "🥹💖" : "😘💕"}</div>
+        <h1>${yours ? "I love you so much, Baby! ❤️" : "चलो शुरू करते हैं ❤️"}</h1>
+        ${yours
+          ? "<p>Thank you so much, मेरी जान 🥹💕</p><p>चलो शुरू करते हैं ❤️</p>"
+          : "<p>आपकी smile हमेशा बनी रहे, मेरी जान। 💗</p>"}
+        ${button("हाँ जी ❤️", "home()")}
+      `);
+    }
 
-        <button type="button" onclick="showPage('yours')">
-            जैसी भी हूँ, आपकी हूँ 🫶
-        </button>
+    function home() {
+      render(`
+        <div class="hero-heart">🧸💕</div>
+        <h1>मेरी Baby को क्या चाहिए? 🥹</h1>
+        <p class="subtitle">
+          बताओ ना मेरी जान, आपके लिए सब हाज़िर है ❤️
+        </p>
 
-        <footer>Made with all my love, for my Baby ❤️</footer>
-    </main>
+        <div class="button-stack">
+          ${button("तुषार चाहिए ❤️", "tushar()")}
+          ${button("खाना चाहिए 🍕", "foodDelivery()")}
+          ${button("चीज़ी चाहिए 🧀", "cheesy()")}
+          ${button("आपको खाना है? 🍽️", "countdown()")}
+          ${button("Give me hint 💌", "foodHint()")}
+        </div>
+      `);
+    }
 
-    <script>
-        function showPage(answer) {
-            const app = document.getElementById("app");
+    function tushar() {
+      render(`
+        <div class="hero-heart">🫂💗</div>
+        <h1>Baby, मैं तो आपके पास हूँ ❤️</h1>
+        <p>बस आँखें बंद करके देखो। 🥹💕</p>
+        <p>I love you so much, मेरी Baby! 💖</p>
+        <p>ठीक है मेरी Baby? 🫶</p>
+        ${button("ठीक है मेरी Baby ❤️", "home()")}
+      `);
+    }
 
-            if (answer === "good") {
-                app.innerHTML = `
-                    <h1>चलो शुरू करते हैं ❤️</h1>
-                    <p>आपकी smile हमेशा बनी रहे, मेरी जान। 💗</p>
-                    <button onclick="showPage('menu')">हाँ जी ❤️</button>
-                `;
-            } else if (answer === "yours") {
-                app.innerHTML = `
-                    <h1>I love you so much, Baby! ❤️</h1>
-                    <p>Thank you so much, मेरी जान 🥹💕</p>
-                    <p>चलो शुरू करते हैं ❤️</p>
-                    <button onclick="showPage('menu')">हाँ जी ❤️</button>
-                `;
-            } else if (answer === "menu") {
-                app.innerHTML = `
-                    <h1>मेरी Baby को क्या चाहिए? 🥹❤️</h1>
-                    <p>बताओ ना, मेरी जान! 💕</p>
-                    <button>तुषार चाहिए ❤️</button>
-                    <button>खाना चाहिए 🍕</button>
-                    <button>जी जी जी 🥰</button>
-                    <button>आपको खाना चाहिए? 🍽️</button>
-                    <button>खा लो, Baby ❤️</button>
-                `;
-            }
+    function foodDelivery() {
+      render(`
+        <div class="hero-heart">🍕💗</div>
+        <h1>Okay Baby! ❤️</h1>
+        <p>Within 60 minutes आपके घर पे आ जाएगा। 🥰</p>
+        <p>I love you so much, मेरी जान! 💕</p>
+        ${backButton()}
+      `);
+    }
+
+    function cheesy() {
+      render(`
+        <div class="hero-heart">🧀💖</div>
+        <h1>Okay Baby! ❤️</h1>
+        <p>आपके घर पे आ जाएगी। 🥹💕</p>
+        <p>Love you so much, मेरी Baby! 💗</p>
+        ${backButton()}
+      `);
+    }
+
+    function foodHint() {
+      render(`
+        <div class="hero-heart">💌🥰</div>
+        <h1>बताओ Baby, क्या चाहिए? ❤️</h1>
+        <p>जो मन में है, यहाँ लिख दो मेरी जान। 💕</p>
+
+        <form id="hintForm">
+          <textarea id="hint" required maxlength="500"
+            placeholder="यहाँ लिखो, Baby... ❤️"
+            aria-label="Your hint"></textarea>
+          <button type="submit">Submit ❤️</button>
+        </form>
+
+        <div id="message"></div>
+        ${backButton()}
+      `);
+
+      document.getElementById("hintForm")
+        .addEventListener("submit", submitHint);
+    }
+
+    function submitHint(event) {
+      event.preventDefault();
+
+      const hint = document.getElementById("hint").value.trim();
+      const message = document.getElementById("message");
+
+      if (!hint) {
+        message.textContent = "Baby, पहले अपना hint तो लिखो ❤️";
+        return;
+      }
+
+      const title = document.createElement("p");
+      title.textContent = "आपका hint मिल गया, Baby! 💗";
+
+      const answer = document.createElement("p");
+      answer.textContent = "आपने लिखा: " + hint;
+
+      const note = document.createElement("p");
+      note.className = "note";
+      note.textContent =
+        "यह hint सिर्फ इसी page पर दिखता है; किसी को भेजा नहीं गया।";
+
+      message.replaceChildren(title, answer, note);
+    }
+
+    function countdown() {
+      render(`
+        <div class="hero-heart">🎁💕</div>
+        <h1>29 November तक countdown, Baby! 🥹❤️</h1>
+        <p>बस इतना-सा इंतज़ार बाकी है 💕</p>
+        <h2 id="timer">Countdown शुरू हो रहा है...</h2>
+        <p id="timerMessage"></p>
+        ${backButton()}
+      `);
+
+      const target = new Date(DELIVERY_DATE).getTime();
+
+      function updateTimer() {
+        const timer = document.getElementById("timer");
+        const message = document.getElementById("timerMessage");
+
+        if (!timer) return false;
+
+        if (!Number.isFinite(target)) {
+          timer.textContent = "Date सही से सेट करें";
+          return false;
         }
-    </script>
+
+        const remaining = target - Date.now();
+
+        if (remaining <= 0) {
+          timer.textContent = "वो खास समय आ गया, Baby! ❤️";
+          message.textContent = "I love you so much! 💗";
+          return false;
+        }
+
+        const days = Math.floor(remaining / 86400000);
+        const hours = Math.floor((remaining % 86400000) / 3600000);
+        const minutes = Math.floor((remaining % 3600000) / 60000);
+        const seconds = Math.floor((remaining % 60000) / 1000);
+
+        timer.textContent =
+          `${days} दिन ${hours} घंटे ${minutes} मिनट ${seconds} सेकंड`;
+
+        message.textContent = "हर पल आपके लिए खास है 💕";
+        return true;
+      }
+
+      updateTimer();
+
+      const interval = setInterval(() => {
+        if (!updateTimer()) clearInterval(interval);
+      }, 1000);
+    }
+
+    // Floating hearts animation ❤️
+    setInterval(() => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+
+      const heart = document.createElement("div");
+      heart.className = "float-heart";
+      heart.setAttribute("aria-hidden", "true");
+
+      const hearts = ["💗", "💕", "💖", "💘", "✨"];
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (16 + Math.random() * 22) + "px";
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }, 700);
+
+    welcome();
+  </script>
 </body>
 </html>
